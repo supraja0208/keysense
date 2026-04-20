@@ -633,7 +633,7 @@ async function submitData() {
   };
 
   try {
-    const res  = await fetch('/api/submit', {
+    const res  = await fetch('https://keysense-xrrd.vercel.app', {
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body: JSON.stringify(payload)
