@@ -197,7 +197,7 @@ def analyze(data):
     }
     return row, summary
 
-@app.route('/submit', methods=['POST'])
+@app.route('/api/submit', methods=['POST'])
 def submit():
     try:
         data = request.get_json()
