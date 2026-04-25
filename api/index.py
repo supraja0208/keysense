@@ -4,7 +4,7 @@ from datetime import datetime
 import gspread
 from google.oauth2.service_account import Credentials
  
-app = Flask(__name__)
+app = Flask(__name__, static_folder='../public', static_url_path='')
  
 # ── Google Sheets ─────────────────────────────────────────────────────────────
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
@@ -208,3 +208,13 @@ def submit():
         return jsonify({'status': 'ok', 'summary': summary})
     except Exception as e:
         return jsonify({'status': 'error', 'message': str(e)}), 500
+
+@app.route('/')
+def index():
+    html_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'index.html')
+    try:
+        with open(html_path, 'r', encoding='utf-8') as f:
+            return f.read(), 200, {'Content-Type': 'text/html'}
+    except Exception as e:
+        return str(e), 500
+
