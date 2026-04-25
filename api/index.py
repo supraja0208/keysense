@@ -207,11 +207,6 @@ def submit():
     except Exception as e:
         return jsonify({'status': 'error', 'message': str(e)}), 500
         
- 
 @app.route('/')
 def index():
     return app.send_static_file('index.html')
-
-
- 
- 
