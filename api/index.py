@@ -7,7 +7,7 @@ from google.oauth2.service_account import Credentials
 app = Flask(__name__)
 
 # ── Google Sheets ─────────────────────────────────────────────────────────────
-SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
+SCOPES = ['https://docs.google.com/spreadsheets/d/13SmhZrOjZgf2wq3h-L3HD7ykargXxcpVLBmFsiqoYpQ/edit?gid=0#gid=0']
 
 HEADERS = [
     'timestamp','session_id','mood',
