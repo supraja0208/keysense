@@ -208,7 +208,7 @@ def submit():
         return jsonify({'status': 'error', 'message': str(e)}), 500
         
  
- @app.route('/')
+@app.route('/')
 def index():
     return app.send_static_file('index.html')
 
