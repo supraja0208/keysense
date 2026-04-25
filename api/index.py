@@ -209,6 +209,9 @@ def submit():
 
 @app.route('/')
 def index():
-    with open(os.path.join(os.path.dirname(__file__), '..', 'public', 'index.html'), 'r') as f:
-        html = f.read()
-    return html, 200, {'Content-Type': 'text/html'}
+    html_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'public', 'index.html')
+    try:
+        with open(html_path, 'r', encoding='utf-8') as f:
+            return f.read(), 200, {'Content-Type': 'text/html'}
+    except Exception as e:
+        return str(e), 500
