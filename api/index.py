@@ -217,4 +217,3 @@ def index():
             return f.read(), 200, {'Content-Type': 'text/html'}
     except Exception as e:
         return str(e), 500
-
