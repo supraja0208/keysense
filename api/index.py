@@ -4,8 +4,7 @@ from datetime import datetime
 import gspread
 from google.oauth2.service_account import Credentials
 
-app = Flask(__name__)
-
+app = Flask(__name__, static_folder='../public', static_url_path='')
 # ── Google Sheets ─────────────────────────────────────────────────────────────
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
 
@@ -209,10 +208,10 @@ def submit():
         return jsonify({'status': 'error', 'message': str(e)}), 500
         
  
-@app.route('/api/health', methods=['GET'])
-def health():
-    return jsonify({'status': 'ok'})
+ @app.route('/')
+def index():
+    return app.send_static_file('index.html')
+
 
  
-# Vercel needs this
-app = app
+ 
