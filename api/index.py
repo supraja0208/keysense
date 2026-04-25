@@ -206,7 +206,9 @@ def submit():
         return jsonify({'status': 'ok', 'summary': summary})
     except Exception as e:
         return jsonify({'status': 'error', 'message': str(e)}), 500
-        
+
 @app.route('/')
 def index():
-    return app.send_static_file('index.html')
+    with open(os.path.join(os.path.dirname(__file__), '..', 'public', 'index.html'), 'r') as f:
+        html = f.read()
+    return html, 200, {'Content-Type': 'text/html'}
