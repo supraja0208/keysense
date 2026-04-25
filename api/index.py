@@ -208,10 +208,7 @@ def submit():
     except Exception as e:
         return jsonify({'status': 'error', 'message': str(e)}), 500
         
-@app.route('/')
-def index():
-    return 'OK', 200
-
+ 
 @app.route('/api/health', methods=['GET'])
 def health():
     return jsonify({'status': 'ok'})
