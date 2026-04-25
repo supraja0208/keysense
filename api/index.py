@@ -196,7 +196,11 @@ def analyze(data):
         'avg_word_len': awl, 'bursts': len(bursts)
     }
     return row, summary
-
+    
+@app.route('/')
+def index():
+    return 'OK', 200
+    
 @app.route('/api/submit', methods=['POST'])
 def submit():
     try:
