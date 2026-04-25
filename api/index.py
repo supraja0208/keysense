@@ -3,13 +3,14 @@ import json, re, os
 from datetime import datetime
 import gspread
 from google.oauth2.service_account import Credentials
-
-app = Flask(__name__, static_folder='../public', static_url_path='')
+ 
+app = Flask(__name__)
+ 
 # ── Google Sheets ─────────────────────────────────────────────────────────────
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
-
+ 
 HEADERS = [
-    'timestamp','session_id','mood',
+    'timestamp','session_id','mood','device_type',
     'total_chars','word_count','avg_word_length','sentence_count',
     'typing_duration_sec','avg_typing_speed_wpm','first_keystroke_delay_ms',
     'avg_key_hold_time_ms','hold_time_variance',
@@ -25,12 +26,12 @@ HEADERS = [
     'sentiment_score','dominant_emotion',
     'text_sample'
 ]
-
+ 
 PROFANITY = {'damn','hell','crap','stupid','idiot','hate','worst','ugh','wtf','dumb','moron'}
 HEDGING   = ['maybe','perhaps','might','possibly','probably','i think','i guess',
              'i suppose','sort of','kind of','not sure','i feel like','seems like','apparently']
 COMMON_DG = {'th','he','in','er','an','re','on','en','at','es','st','nt','ou','ea','hi','is','it','ha','et'}
-
+ 
 def get_sheet():
     raw   = os.environ.get('GOOGLE_CREDENTIALS','{}')
     sid   = os.environ.get('SHEET_ID','')
@@ -41,12 +42,12 @@ def get_sheet():
     if not sh.get_all_values():
         sh.append_row(HEADERS)
     return sh
-
+ 
 def vari(lst):
     if len(lst) < 2: return 0.0
     m = sum(lst)/len(lst)
     return round(sum((x-m)**2 for x in lst)/len(lst), 2)
-
+ 
 def do_sentiment(text, mood):
     tl = text.lower()
     pos = sum(1 for w in [
@@ -64,21 +65,22 @@ def do_sentiment(text, mood):
     score   = max(-1.0, min(1.0, (pos - neg + bias) / 5.0))
     emotion = 'Positive' if score > 0.3 else ('Negative' if score < -0.3 else 'Neutral')
     return round(score, 3), emotion
-
+ 
 def analyze(data):
     events     = data.get('events', [])
     text       = data.get('text', '')
     mood       = data.get('mood', 'neutral')
     session_id = data.get('session_id', 'unknown')
-    sess_start = data.get('session_start', None)
-    typed_raw  = data.get('typed_raw', '')   # raw chars including errors before backspace
-
+    sess_start   = data.get('session_start', None)
+    device_type  = data.get('device_type', 'unknown')
+    typed_raw    = data.get('typed_raw', '')   # raw chars including errors before backspace
+ 
     # ── Event loop ──────────────────────────────────────────────────────────
     key_holds = {}; keydown_seq = []; inter_delays = []
     pauses = []; bursts = []; current_burst = 0
     last_kd = None; bscount = 0; corr_bursts = []; consec_bs = 0
     PAUSE = 1000
-
+ 
     for ev in events:
         etype = ev.get('type'); key = ev.get('key',''); t = ev.get('time', 0)
         if etype == 'keydown':
@@ -100,10 +102,10 @@ def analyze(data):
         elif etype == 'keyup':
             h = ev.get('hold', 0)
             if h > 0: key_holds.setdefault(key, []).append(h)
-
+ 
     if consec_bs > 1: corr_bursts.append(consec_bs)
     if current_burst > 0: bursts.append(current_burst)
-
+ 
     # ── Digraph latencies ────────────────────────────────────────────────────
     dg_lat = {}
     for i in range(len(keydown_seq)-1):
@@ -114,17 +116,17 @@ def analyze(data):
     avg_dg_map = {dg: round(sum(v)/len(v),2) for dg,v in dg_lat.items()}
     cdg = [v for dg,v in avg_dg_map.items() if dg in COMMON_DG]
     avg_dg = round(sum(cdg)/len(cdg),2) if cdg else 0
-
+ 
     # ── Hold stats ───────────────────────────────────────────────────────────
     all_holds = [h for hs in key_holds.values() for h in hs]
     avg_hold  = round(sum(all_holds)/len(all_holds),2) if all_holds else 0
     hold_var  = vari(all_holds)
-
+ 
     # ── Delay stats ──────────────────────────────────────────────────────────
     avg_delay  = round(sum(inter_delays)/len(inter_delays),2) if inter_delays else 0
     delay_var  = vari(inter_delays)
     rhythm     = round((delay_var**0.5)/avg_delay,3) if avg_delay > 0 else 0
-
+ 
     # ── Speed ────────────────────────────────────────────────────────────────
     kd_times   = [t for _,t in keydown_seq]
     dur_ms     = (kd_times[-1]-kd_times[0]) if len(kd_times)>1 else 0
@@ -132,13 +134,13 @@ def analyze(data):
     wc         = len(text.split()) if text.strip() else 0
     wpm        = round((wc/dur_sec)*60,1) if dur_sec > 0 else 0
     first_ks   = round(kd_times[0]-sess_start,0) if sess_start and kd_times else 0
-
+ 
     # ── Pauses / bursts ──────────────────────────────────────────────────────
     longest_pause = round(max(pauses),2) if pauses else 0
     avg_pause     = round(sum(pauses)/len(pauses),2) if pauses else 0
     avg_burst_len = round(sum(bursts)/len(bursts),2) if bursts else 0
     max_cb        = max(corr_bursts) if corr_bursts else 0
-
+ 
     # ── Text features ────────────────────────────────────────────────────────
     tc        = len(text)
     bs_ratio  = round(bscount/tc,3) if tc > 0 else 0
@@ -154,15 +156,15 @@ def analyze(data):
     tl        = text.lower()
     prof      = sum(1 for p in PROFANITY if p in tl)
     hedge     = sum(1 for h in HEDGING if h in tl)
-
+ 
     # ── Error rate (backspaces vs total keystrokes) ──────────────────────────
     total_keys = len([e for e in events if e.get('type')=='keydown'])
     error_rate = round(bscount/total_keys,3) if total_keys > 0 else 0
-
+ 
     score, emotion = do_sentiment(text, mood)
-
+ 
     row = {
-        'timestamp': datetime.now().isoformat(), 'session_id': session_id, 'mood': mood,
+        'timestamp': datetime.now().isoformat(), 'session_id': session_id, 'mood': mood, 'device_type': device_type,
         'total_chars': tc, 'word_count': wc, 'avg_word_length': awl, 'sentence_count': sc,
         'typing_duration_sec': dur_sec, 'avg_typing_speed_wpm': wpm,
         'first_keystroke_delay_ms': first_ks,
@@ -195,7 +197,7 @@ def analyze(data):
         'avg_word_len': awl, 'bursts': len(bursts)
     }
     return row, summary
-    
+ 
 @app.route('/api/submit', methods=['POST'])
 def submit():
     try:
@@ -206,12 +208,3 @@ def submit():
         return jsonify({'status': 'ok', 'summary': summary})
     except Exception as e:
         return jsonify({'status': 'error', 'message': str(e)}), 500
-
-@app.route('/')
-def index():
-    html_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'index.html')
-    try:
-        with open(html_path, 'r', encoding='utf-8') as f:
-            return f.read(), 200, {'Content-Type': 'text/html'}
-    except Exception as e:
-        return str(e), 500
