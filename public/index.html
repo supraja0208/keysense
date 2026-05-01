@@ -31,7 +31,7 @@
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
- 
+
 body{
   background:var(--bg);
   color:var(--text);
@@ -39,7 +39,7 @@ body{
   min-height:100vh;
   overflow-x:hidden;
 }
- 
+
 /* ── Animated mesh background ── */
 .bg-mesh{
   position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
@@ -56,14 +56,14 @@ body{
   0%{transform:translate(0,0) scale(1);}
   100%{transform:translate(40px,30px) scale(1.1);}
 }
- 
+
 /* ── Layout ── */
 .wrapper{
   position:relative;z-index:1;
   max-width:820px;margin:0 auto;
   padding:0 1.25rem 5rem;
 }
- 
+
 /* ── Header ── */
 header{
   text-align:center;
@@ -89,7 +89,7 @@ header{
   font-size:.8rem;letter-spacing:.25em;text-transform:uppercase;
   color:var(--muted);margin-top:.6rem;
 }
- 
+
 /* ── Step indicator ── */
 .steps{
   display:flex;align-items:center;justify-content:center;
@@ -102,7 +102,7 @@ header{
 .step-dot.active{background:var(--c2);box-shadow:0 0 10px var(--c2);}
 .step-dot.done{background:var(--c3);box-shadow:0 0 8px var(--c3);}
 .step-line{width:32px;height:1px;background:var(--border);}
- 
+
 /* ── Card ── */
 .card{
   background:var(--card);
@@ -125,7 +125,7 @@ header{
   background:linear-gradient(90deg,transparent,var(--c1),var(--c2),var(--c3),transparent);
   opacity:.7;
 }
- 
+
 .card-title{
   font-family:'Clash Display',sans-serif;
   font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;
@@ -133,7 +133,7 @@ header{
   display:flex;align-items:center;gap:.6rem;
 }
 .card-title::after{content:'';flex:1;height:1px;background:var(--border);}
- 
+
 /* ── Device selector ── */
 .device-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;}
 @media(max-width:480px){.device-grid{grid-template-columns:repeat(2,1fr);}}
@@ -152,7 +152,7 @@ header{
   box-shadow:0 0 24px rgba(76,201,240,.3);
 }
 .device-auto{font-size:.68rem;color:var(--c3);margin-top:.6rem;text-align:center;}
- 
+
 /* ── Mood grid ── */
 .mood-grid{
   display:grid;
@@ -160,7 +160,7 @@ header{
   gap:.6rem;
 }
 @media(max-width:480px){.mood-grid{grid-template-columns:repeat(2,1fr);}}
- 
+
 .mood-btn{
   display:flex;flex-direction:column;align-items:center;gap:.3rem;
   padding:.9rem .5rem;
@@ -190,7 +190,7 @@ header{
 .mood-btn[data-mood="sad"]       {--mc:var(--sad);       --mcs:96,165,250;}
 .mood-btn[data-mood="frustrated"]{--mc:var(--frustrated);--mcs:249,115,22;}
 .mood-btn[data-mood="angry"]     {--mc:var(--angry);     --mcs:239,68,68;}
- 
+
 /* ── Textarea ── */
 .textarea-wrap{position:relative;}
 #textInput{
@@ -211,14 +211,14 @@ header{
   box-shadow:0 0 0 4px rgba(255,60,172,.07),0 0 40px rgba(255,60,172,.08);
 }
 #textInput::placeholder{color:var(--muted);}
- 
+
 /* char count inside textarea */
 .char-count{
   position:absolute;bottom:1rem;right:1rem;
   font-size:.7rem;color:var(--muted);
   pointer-events:none;
 }
- 
+
 /* ── Recording bar ── */
 .rec-bar{
   display:flex;align-items:center;gap:1rem;
@@ -238,7 +238,7 @@ header{
   background:var(--surface);border:1px solid var(--border);
   border-radius:20px;padding:.2rem .6rem;
 }
- 
+
 /* ── Live stats ── */
 .live-grid{
   display:grid;
@@ -263,7 +263,7 @@ header{
   color:var(--sc,var(--c2));
 }
 .stat-lbl{font-size:.58rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:.2rem;}
- 
+
 /* ── Submit button ── */
 .submit-btn{
   width:100%;padding:1.1rem;
@@ -287,12 +287,12 @@ header{
 .submit-btn:active:not(:disabled){transform:scale(.98);}
 .submit-btn:disabled{opacity:.35;cursor:not-allowed;}
 .submit-btn span{position:relative;z-index:1;}
- 
+
 /* ── Analysis Result card ── */
 #resultSection{display:none;animation:slideUp .5s cubic-bezier(.34,1.56,.64,1);}
 #resultSection.show{display:block;}
 @keyframes slideUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
- 
+
 .result-grid{
   display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
   gap:.8rem;margin:1rem 0;
@@ -310,7 +310,7 @@ header{
 }
 .res-val{font-family:'Clash Display',sans-serif;font-size:1.6rem;font-weight:700;color:var(--rc,var(--c2));}
 .res-lbl{font-size:.6rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:.3rem;}
- 
+
 /* ── Sentiment bar ── */
 .sent-section{margin-top:1.25rem;}
 .sent-title{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.15em;margin-bottom:.5rem;}
@@ -325,7 +325,7 @@ header{
   min-width:4px;
 }
 .sent-labels{display:flex;justify-content:space-between;font-size:.65rem;color:var(--muted);margin-top:.3rem;}
- 
+
 .emotion-pill{
   display:inline-flex;align-items:center;gap:.5rem;
   margin-top:.8rem;padding:.5rem 1.3rem;
@@ -335,7 +335,7 @@ header{
 .emotion-pill.Positive{background:rgba(6,255,165,.1);color:var(--c3);border:1px solid rgba(6,255,165,.25);}
 .emotion-pill.Neutral {background:rgba(168,168,204,.1);color:var(--neutral);border:1px solid rgba(168,168,204,.25);}
 .emotion-pill.Negative{background:rgba(239,68,68,.1);color:var(--angry);border:1px solid rgba(239,68,68,.25);}
- 
+
 /* ── Error analysis box ── */
 .error-box{
   margin-top:1rem;
@@ -356,7 +356,111 @@ header{
 .error-tag.good{background:rgba(6,255,165,.08);color:var(--c3);border-color:rgba(6,255,165,.2);}
 .error-tag.warn{background:rgba(249,115,22,.08);color:var(--frustrated);border-color:rgba(249,115,22,.2);}
 .error-tag.bad {background:rgba(239,68,68,.08);color:var(--angry);border-color:rgba(239,68,68,.2);}
- 
+
+/* ── Welcome overlay ── */
+#welcomeOverlay{
+  position:fixed;inset:0;z-index:9999;
+  background:var(--bg);
+  display:flex;align-items:center;justify-content:center;
+  padding:1.5rem;
+  animation:none;
+}
+#welcomeOverlay.hiding{
+  animation:overlayHide .6s cubic-bezier(.4,0,.2,1) forwards;
+}
+@keyframes overlayHide{
+  0%{opacity:1;transform:scale(1);}
+  100%{opacity:0;transform:scale(1.03);pointer-events:none;}
+}
+.welcome-box{
+  max-width:580px;width:100%;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:24px;
+  padding:2.5rem 2rem;
+  position:relative;
+  overflow:hidden;
+  animation:welcomePop .6s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes welcomePop{
+  from{opacity:0;transform:translateY(30px) scale(.97);}
+  to{opacity:1;transform:translateY(0) scale(1);}
+}
+.welcome-box::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--c1),var(--c2),var(--c3));
+}
+.welcome-logo{
+  font-family:'Clash Display',sans-serif;
+  font-size:2.8rem;font-weight:700;letter-spacing:-2px;
+  background:linear-gradient(135deg,var(--c1),var(--c2),var(--c3));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;text-align:center;margin-bottom:.3rem;
+}
+.welcome-tagline{
+  text-align:center;font-size:.72rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:1.8rem;
+}
+.welcome-what{
+  font-family:'Clash Display',sans-serif;
+  font-size:1rem;color:var(--c2);margin-bottom:.5rem;
+  letter-spacing:.05em;
+}
+.welcome-desc{
+  font-size:.9rem;line-height:1.7;color:var(--muted);
+  margin-bottom:1.5rem;
+}
+.welcome-desc strong{color:var(--text);}
+.welcome-steps{
+  display:flex;flex-direction:column;gap:.7rem;
+  margin-bottom:1.8rem;
+}
+.welcome-step{
+  display:flex;align-items:flex-start;gap:.9rem;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:12px;padding:.85rem 1rem;
+}
+.welcome-step-num{
+  width:28px;height:28px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Clash Display',sans-serif;font-size:.8rem;font-weight:700;
+  flex-shrink:0;
+}
+.welcome-step-num.n1{background:rgba(255,60,172,.15);color:var(--c1);}
+.welcome-step-num.n2{background:rgba(76,201,240,.15);color:var(--c2);}
+.welcome-step-num.n3{background:rgba(6,255,165,.15);color:var(--c3);}
+.welcome-step-num.n4{background:rgba(249,200,70,.15);color:var(--c4);}
+.welcome-step-text{font-size:.85rem;line-height:1.5;color:var(--muted);}
+.welcome-step-text strong{color:var(--text);}
+.welcome-note{
+  background:rgba(249,200,70,.06);
+  border:1px solid rgba(249,200,70,.2);
+  border-radius:12px;padding:.9rem 1rem;
+  font-size:.82rem;line-height:1.6;
+  color:var(--c4);margin-bottom:1.5rem;
+  display:flex;gap:.7rem;align-items:flex-start;
+}
+.welcome-note-icon{font-size:1.1rem;flex-shrink:0;margin-top:.1rem;}
+.privacy-note{
+  text-align:center;font-size:.68rem;color:var(--muted);
+  margin-bottom:1.2rem;
+}
+.welcome-btn{
+  width:100%;padding:1rem;border:none;border-radius:14px;
+  background:linear-gradient(135deg,var(--c1),var(--c2));
+  color:#fff;font-family:'Clash Display',sans-serif;
+  font-size:1.1rem;font-weight:600;cursor:pointer;
+  transition:all .3s;position:relative;overflow:hidden;
+}
+.welcome-btn::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,var(--c2),var(--c3));
+  opacity:0;transition:opacity .3s;
+}
+.welcome-btn:hover{transform:scale(1.02);box-shadow:0 8px 30px rgba(255,60,172,.35);}
+.welcome-btn:hover::before{opacity:1;}
+.welcome-btn span{position:relative;z-index:1;}
+
 /* ── Toast ── */
 #toast{
   position:fixed;bottom:2rem;right:1.5rem;
@@ -370,28 +474,80 @@ header{
 #toast.show{transform:translateY(0);opacity:1;}
 #toast.ok  {border-color:rgba(6,255,165,.4);color:var(--c3);}
 #toast.err {border-color:rgba(239,68,68,.4);color:var(--angry);}
- 
+
 ::-webkit-scrollbar{width:5px;}
 ::-webkit-scrollbar-track{background:var(--bg);}
 ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
 </style>
 </head>
 <body>
- 
+
+
+<!-- ══ WELCOME OVERLAY ══ -->
+<div id="welcomeOverlay">
+  <div class="welcome-box">
+    <div class="welcome-logo">KeySense</div>
+    <div class="welcome-tagline">Keystroke Emotion Intelligence</div>
+
+    <div class="welcome-what">👋 What is this?</div>
+    <div class="welcome-desc">
+      This is a <strong>research study</strong> on how people's emotions affect the way they type.
+      Every person types differently when they are happy, sad, angry or calm —
+      and this tool captures those patterns to build an <strong>AI emotion detection model</strong>.
+    </div>
+
+    <div class="welcome-steps">
+      <div class="welcome-step">
+        <div class="welcome-step-num n1">1</div>
+        <div class="welcome-step-text"><strong>Select your device</strong> — tell us whether you're on a phone, laptop or PC</div>
+      </div>
+      <div class="welcome-step">
+        <div class="welcome-step-num n2">2</div>
+        <div class="welcome-step-text"><strong>Select your mood</strong> — pick the emotion that best describes how you feel right now</div>
+      </div>
+      <div class="welcome-step">
+        <div class="welcome-step-num n3">3</div>
+        <div class="welcome-step-text"><strong>Type freely</strong> — write anything you want: your thoughts, your day, a story — at least a few sentences</div>
+      </div>
+      <div class="welcome-step">
+        <div class="welcome-step-num n4">4</div>
+        <div class="welcome-step-text"><strong>Submit</strong> — your keystroke patterns and text are analysed and saved for research</div>
+      </div>
+    </div>
+
+    <div class="welcome-note">
+      <div class="welcome-note-icon">💛</div>
+      <div>
+        <strong>Please type naturally and honestly.</strong> Don't try to type faster or slower than usual.
+        The more genuine your typing is, the more it helps the research.
+        There are no right or wrong answers — just be yourself!
+      </div>
+    </div>
+
+    <div class="privacy-note">
+      🔒 Your data is used only for academic research. No personal information is collected.
+    </div>
+
+    <button class="welcome-btn" onclick="startSession()">
+      <span>I Understand — Let's Start →</span>
+    </button>
+  </div>
+</div>
+
 <div class="bg-mesh">
   <div class="blob blob1"></div>
   <div class="blob blob2"></div>
   <div class="blob blob3"></div>
   <div class="blob blob4"></div>
 </div>
- 
+
 <div class="wrapper">
- 
+
   <header>
     <div class="logo">KeySense</div>
     <div class="logo-sub">Keystroke Emotion Intelligence</div>
   </header>
- 
+
   <!-- Step dots -->
   <div class="steps">
     <div class="step-dot active" id="dot1"></div>
@@ -402,7 +558,7 @@ header{
     <div class="step-line"></div>
     <div class="step-dot" id="dot4"></div>
   </div>
- 
+
   <!-- ① Device -->
   <div class="card" id="card-device">
     <div class="card-glow"></div>
@@ -423,9 +579,9 @@ header{
     </div>
     <div class="device-auto" id="deviceAutoDetect"></div>
   </div>
- 
+
   <!-- ② Mood -->
- 
+
   <div class="card" id="card-mood">
     <div class="card-glow"></div>
     <div class="card-title">② Select your current mood</div>
@@ -440,18 +596,18 @@ header{
       <button class="mood-btn" data-mood="angry">   <span class="emoji">😡</span>Angry</button>
     </div>
   </div>
- 
+
   <!-- ② Typing -->
   <div class="card" id="card-type">
     <div class="card-glow"></div>
     <div class="card-title">③ Type anything — express yourself freely</div>
- 
+
     <div class="textarea-wrap">
       <textarea id="textInput"
         placeholder="Just start typing... talk about your day, your thoughts, anything at all. There are no right or wrong answers — every keystroke is data."></textarea>
       <span class="char-count" id="charCount">0 chars</span>
     </div>
- 
+
     <div class="rec-bar">
       <div class="rec-dot"></div>
       <span class="rec-label">Recording</span>
@@ -463,7 +619,7 @@ header{
         <span class="rec-tag">🔤 Digraphs</span>
       </div>
     </div>
- 
+
     <!-- 12 live stats -->
     <div class="live-grid">
       <div class="stat-box" style="--sc:var(--c2)"  id="sb-wpm">   <div class="stat-val" id="lv-wpm">0</div>   <div class="stat-lbl">WPM</div></div>
@@ -480,26 +636,26 @@ header{
       <div class="stat-box" style="--sc:var(--c4)"  id="sb-hedge"> <div class="stat-val" id="lv-hedge">0</div> <div class="stat-lbl">Hedging</div></div>
     </div>
   </div>
- 
+
   <button class="submit-btn" id="submitBtn" onclick="submitData()" disabled>
     <span id="btnTxt">Analyse My Keystrokes →</span>
   </button>
- 
+
   <!-- ③ Results -->
   <div id="resultSection">
     <div class="card" id="card-result">
       <div class="card-glow"></div>
       <div class="card-title">④ Analysis Results</div>
- 
+
       <div class="result-grid" id="resultGrid"></div>
- 
+
       <div class="sent-section">
         <div class="sent-title">Sentiment Spectrum</div>
         <div class="sent-track"><div class="sent-fill" id="sentFill" style="width:50%"></div></div>
         <div class="sent-labels"><span>Negative</span><span>Neutral</span><span>Positive</span></div>
         <div id="emotionPill"></div>
       </div>
- 
+
       <!-- Error / text analysis -->
       <div class="error-box" id="errorBox">
         <div class="error-box-title">📊 Text &amp; Error Analysis</div>
@@ -507,11 +663,11 @@ header{
       </div>
     </div>
   </div>
- 
+
 </div><!-- /wrapper -->
- 
+
 <div id="toast"></div>
- 
+
 <script>
 // ═══════════════════════════════════════════════════════════════
 //  CONSTANTS
@@ -520,7 +676,7 @@ const PAUSE_THRESH = 1000;
 const COMMON_DG = new Set(['th','he','in','er','an','re','on','en','at','es','st','nt','ou','ea','hi','is','it','ha','et']);
 const HEDGING   = ['maybe','perhaps','might','possibly','probably','i think','i guess',
                    'i suppose','sort of','kind of','not sure','i feel like','seems like','apparently'];
- 
+
 // ═══════════════════════════════════════════════════════════════
 //  STATE
 // ═══════════════════════════════════════════════════════════════
@@ -530,7 +686,7 @@ let selectedMood = null;
 let sessionId    = 'sess_' + Date.now();
 let sessionStart = Date.now();
 let startTime    = null;
- 
+
 // Counters (kept in sync for live display)
 let backspaceCount = 0;
 let corrBurstCount = 0;
@@ -543,12 +699,21 @@ let lastKey        = null;
 let lastKeyTime    = null;
 let digraphSums    = {};  // dg -> {sum, count}
 let totalKeydowns  = 0;
- 
+
+// ═══════════════════════════════════════════════════════════════
+//  WELCOME
+// ═══════════════════════════════════════════════════════════════
+function startSession() {
+  const overlay = document.getElementById('welcomeOverlay');
+  overlay.classList.add('hiding');
+  setTimeout(() => overlay.style.display = 'none', 600);
+}
+
 // ═══════════════════════════════════════════════════════════════
 //  DEVICE DETECTION
 // ═══════════════════════════════════════════════════════════════
 let selectedDevice = null;
- 
+
 function detectDevice() {
   const ua = navigator.userAgent.toLowerCase();
   const isMobile = /android|iphone|ipod/.test(ua);
@@ -558,7 +723,7 @@ function detectDevice() {
   if (screen.width < 1024) return 'laptop';
   return 'desktop';
 }
- 
+
 function selectDevice(btn) {
   document.querySelectorAll('.device-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
@@ -566,7 +731,7 @@ function selectDevice(btn) {
   dot('dot1','done'); dot('dot2','active');
   checkReady();
 }
- 
+
 // Auto-detect on load
 window.addEventListener('load', () => {
   const detected = detectDevice();
@@ -577,10 +742,10 @@ window.addEventListener('load', () => {
   const btn = document.querySelector(`.device-btn[data-device="${detected}"]`);
   if(btn) selectDevice(btn);
 });
- 
+
 // ═══════════════════════════════════════════════════════════════
 //  MOOD
- 
+
 // ═══════════════════════════════════════════════════════════════
 document.querySelectorAll('.mood-btn').forEach(btn => {
   btn.addEventListener('click', () => {
@@ -591,19 +756,19 @@ document.querySelectorAll('.mood-btn').forEach(btn => {
     checkReady();
   });
 });
- 
+
 // ═══════════════════════════════════════════════════════════════
 //  KEYSTROKE CAPTURE
 // ═══════════════════════════════════════════════════════════════
 const textarea = document.getElementById('textInput');
- 
+
 textarea.addEventListener('keydown', e => {
   const t = Date.now();
   if (!startTime) startTime = t;
   totalKeydowns++;
- 
+
   keyDownTimes[e.key] = t;
- 
+
   // Backspace & correction burst
   if (e.key === 'Backspace') {
     backspaceCount++;
@@ -613,7 +778,7 @@ textarea.addEventListener('keydown', e => {
     if (consecBS > 1) corrBurstCount++;
     consecBS = 0;
   }
- 
+
   // Inter-key delay
   if (lastKdTime !== null) {
     const delay = t - lastKdTime;
@@ -622,7 +787,7 @@ textarea.addEventListener('keydown', e => {
     flash('sb-delay');
   }
   lastKdTime = t;
- 
+
   // Digraph
   if (lastKey && lastKey.length === 1 && e.key.length === 1) {
     const dg  = (lastKey + e.key).toLowerCase();
@@ -634,11 +799,11 @@ textarea.addEventListener('keydown', e => {
   }
   lastKey     = e.key;
   lastKeyTime = t;
- 
+
   events.push({type:'keydown', key:e.key, time:t});
   updateLive();
 });
- 
+
 textarea.addEventListener('keyup', e => {
   const t        = Date.now();
   const downTime = keyDownTimes[e.key];
@@ -649,12 +814,12 @@ textarea.addEventListener('keyup', e => {
   delete keyDownTimes[e.key];
   checkReady();
 });
- 
+
 textarea.addEventListener('input', () => {
   document.getElementById('charCount').textContent = textarea.value.length + ' chars';
   dot('dot2','active');
 });
- 
+
 // ═══════════════════════════════════════════════════════════════
 //  LIVE STATS
 // ═══════════════════════════════════════════════════════════════
@@ -663,23 +828,23 @@ function updateLive() {
   const words = text.trim().split(/\s+/).filter(w=>w).length;
   const mins  = startTime ? (Date.now()-startTime)/60000 : 0;
   const wpm   = mins > 0 ? Math.round(words/mins) : 0;
- 
+
   const avgHold  = mean(holdTimes);
   const avgDelay = mean(interDelays);
   const dv       = variance(interDelays);
   const rhythmV  = avgDelay > 0 ? (Math.sqrt(dv)/avgDelay).toFixed(2) : 0;
- 
+
   const dgVals = Object.entries(digraphSums)
     .filter(([dg])=>COMMON_DG.has(dg))
     .map(([,v])=>v.sum/v.count);
   const avgDg = dgVals.length ? Math.round(mean(dgVals)) : 0;
- 
+
   const caps     = (text.match(/[A-Z]/g)||[]).length;
   const capsRat  = text.length ? Math.round(caps/text.length*100) : 0;
   const tl       = text.toLowerCase();
   const hedgeN   = HEDGING.filter(h=>tl.includes(h)).length;
   const errRate  = totalKeydowns > 0 ? Math.round(backspaceCount/totalKeydowns*100) : 0;
- 
+
   set('lv-wpm',    wpm);
   set('lv-words',  words);
   set('lv-hold',   Math.round(avgHold));
@@ -693,7 +858,7 @@ function updateLive() {
   set('lv-caps',   capsRat+'%');
   set('lv-hedge',  hedgeN);
 }
- 
+
 // ═══════════════════════════════════════════════════════════════
 //  SUBMIT
 // ═══════════════════════════════════════════════════════════════
@@ -701,7 +866,7 @@ async function submitData() {
   const btn = document.getElementById('submitBtn');
   btn.disabled = true;
   document.getElementById('btnTxt').textContent = 'Analysing…';
- 
+
   const payload = {
     session_id:    sessionId,
     session_start: sessionStart,
@@ -710,7 +875,7 @@ async function submitData() {
     text:          textarea.value,
     events:        events
   };
- 
+
   try {
     const res  = await fetch('/api/submit', {
       method:'POST',
@@ -718,7 +883,7 @@ async function submitData() {
       body: JSON.stringify(payload)
     });
     const data = await res.json();
- 
+
     if (data.status === 'ok') {
       showResults(data.summary);
       toast('✅ Saved to Google Sheets!', 'ok');
@@ -732,18 +897,18 @@ async function submitData() {
   } catch(e) {
     toast('❌ Could not reach server. Check Vercel deployment.', 'err');
   }
- 
+
   document.getElementById('btnTxt').textContent = 'Analyse My Keystrokes →';
   btn.disabled = false;
 }
- 
+
 // ═══════════════════════════════════════════════════════════════
 //  RESULTS
 // ═══════════════════════════════════════════════════════════════
 function showResults(s) {
   const section = document.getElementById('resultSection');
   section.classList.add('show');
- 
+
   const chips = [
     {k:'wpm',             l:'WPM',              c:'var(--c2)'},
     {k:'avg_hold',        l:'Avg Hold ms',       c:'var(--c4)'},
@@ -766,7 +931,7 @@ function showResults(s) {
     {k:'hedging',         l:'Hedging Words',     c:'var(--calm)'},
     {k:'bursts',          l:'Burst Count',       c:'var(--muted)'},
   ];
- 
+
   const grid = document.getElementById('resultGrid');
   grid.innerHTML = '';
   chips.forEach(({k,l,c}) => {
@@ -776,7 +941,7 @@ function showResults(s) {
       <div class="res-lbl">${l}</div>
     </div>`;
   });
- 
+
   // Sentiment bar
   const pct = Math.round(((s.sentiment_score+1)/2)*100);
   document.getElementById('sentFill').style.width = pct+'%';
@@ -784,66 +949,66 @@ function showResults(s) {
     `<span class="emotion-pill ${s.dominant_emotion}">${
       s.dominant_emotion==='Positive'?'🌟':s.dominant_emotion==='Negative'?'⛈':'🌤'
     } ${s.dominant_emotion} Sentiment &nbsp;·&nbsp; Score: ${s.sentiment_score}</span>`;
- 
+
   // Error analysis
   buildErrorAnalysis(s);
- 
+
   section.scrollIntoView({behavior:'smooth', block:'start'});
 }
- 
+
 function buildErrorAnalysis(s) {
   const items = [];
- 
+
   // WPM assessment
   if (s.wpm > 60)       items.push({t:`Fast typer: ${s.wpm} WPM`, cls:'good'});
   else if (s.wpm > 30)  items.push({t:`Moderate speed: ${s.wpm} WPM`, cls:''});
   else if (s.wpm > 0)   items.push({t:`Slow typing: ${s.wpm} WPM`, cls:'warn'});
- 
+
   // Error rate
   const er = s.error_rate||0;
   if (er < 0.05)        items.push({t:`Low error rate: ${(er*100).toFixed(1)}%`, cls:'good'});
   else if (er < 0.15)   items.push({t:`Moderate errors: ${(er*100).toFixed(1)}%`, cls:'warn'});
   else                  items.push({t:`High error rate: ${(er*100).toFixed(1)}%`, cls:'bad'});
- 
+
   // Correction bursts
   if (s.corr_bursts > 5)  items.push({t:`${s.corr_bursts} correction bursts — possible frustration`, cls:'warn'});
   else if (s.corr_bursts === 0) items.push({t:'No correction bursts', cls:'good'});
- 
+
   // Rhythm
   const rv = s.rhythm_irreg||0;
   if (rv > 1.5)         items.push({t:`Irregular rhythm (${rv}) — emotional disturbance`, cls:'warn'});
   else if (rv > 0)      items.push({t:`Steady rhythm (${rv})`, cls:'good'});
- 
+
   // Pauses
   if (s.pauses > 5)     items.push({t:`${s.pauses} long pauses — hesitation/thinking`, cls:'warn'});
   else                  items.push({t:`${s.pauses} pauses detected`, cls:''});
- 
+
   // CAPS
   const cr = s.caps_ratio||0;
   if (cr > 0.3)         items.push({t:`High CAPS ratio (${(cr*100).toFixed(0)}%) — intensity`, cls:'warn'});
   else if (cr > 0.1)    items.push({t:`Some CAPS usage`, cls:''});
- 
+
   // Repeated letters
   if (s.repeated_letters > 2) items.push({t:`${s.repeated_letters} repeated letters (e.g. soooo)`, cls:'warn'});
   else if (s.repeated_letters === 0) items.push({t:'No repeated letters', cls:'good'});
- 
+
   // Hedging
   if (s.hedging > 3)    items.push({t:`${s.hedging} hedging words — uncertainty/low confidence`, cls:'warn'});
   else if (s.hedging > 0) items.push({t:`${s.hedging} hedging words`, cls:''});
- 
+
   // Profanity
   if (s.profanity > 0)  items.push({t:`${s.profanity} strong word(s) detected`, cls:'bad'});
- 
+
   // Digraph
   if (s.digraph_ms > 0) {
     if (s.digraph_ms > 200)    items.push({t:`Slow digraph timing (${s.digraph_ms}ms) — stress`, cls:'warn'});
     else                       items.push({t:`Normal digraph timing (${s.digraph_ms}ms)`, cls:'good'});
   }
- 
+
   const el = document.getElementById('errorItems');
   el.innerHTML = items.map(i=>`<span class="error-tag ${i.cls}">${i.t}</span>`).join('');
 }
- 
+
 // ═══════════════════════════════════════════════════════════════
 //  HELPERS
 // ═══════════════════════════════════════════════════════════════
