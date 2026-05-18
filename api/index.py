@@ -207,7 +207,12 @@ def submit():
         sheet.append_row([row.get(h,'') for h in HEADERS])
         return jsonify({'status': 'ok', 'summary': summary})
     except Exception as e:
-        return jsonify({'status': 'error', 'message': str(e)}), 500
+        import traceback
+        return jsonify({
+            'status': 'error',
+            'message': str(e),
+            'trace': traceback.format_exc()
+        }), 500
 
 @app.route('/')
 def index():
